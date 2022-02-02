@@ -5,14 +5,18 @@ import './styles/global.scss';
 
 import './styles/sidebar.scss';
 import './styles/content.scss';
+import { MoviesProvider } from './MoviesContext';
 
 export function App() {
 
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'row' }}>
-      <SideBar/> 
-      <Content/>
-    </div>
+
+    <MoviesProvider>
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <SideBar/> 
+        <Content/>
+      </div>
+    </MoviesProvider>
   )
 }

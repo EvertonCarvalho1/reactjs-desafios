@@ -1,4 +1,10 @@
+import { useMovies } from "../MoviesContext";
+import { MovieCard } from "./MovieCard";
+
 export function Content() {
+
+  const {movies, selectedGenre} = useMovies()
+
   return (
     <div className="container">
     <header>
