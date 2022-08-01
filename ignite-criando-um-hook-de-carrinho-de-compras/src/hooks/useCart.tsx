@@ -43,17 +43,17 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         console.log('1 if')
 
         if (stock.amount > 0) {
-          setCart([...cart, product]);
+          setCart([...cart, { ...product, amount: 1 }]);
           localStorage.setItem('@RocketShoes:cart', JSON.stringify([...cart, { ...product, amount: 1 }]));
           toast.success('Adicionado');
           console.log('2 if')
-
+          return
         }
       }
 
       if (productAlreadyInCart) {
         const { data: stock } = await api.get<Stock>(`/stock/${productId}`);
-        console.log('produto já add');
+        console.log('produto já add', productAlreadyInCart.amount);
 
         if (stock.amount > productAlreadyInCart.amount) {
           console.log('add mais 1');
@@ -62,6 +62,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
           setCart(updatedCart);
           localStorage.setItem('@RocketShoes:cart', JSON.stringify(updatedCart));
           toast.success('Adicionado');
+          return
         }
       }
 
